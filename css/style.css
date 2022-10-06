@@ -9,9 +9,30 @@ body {
     width: 100vw;
 }
 
+#player-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#player-form input[type="radio"] {
+    appearance: none;
+    aspect-ratio: 1;
+    border: 1px solid black;
+    border-radius: 100%;
+    height: 1rem;
+}
+
+#player-form input[type="radio"]:checked {
+    background: green;
+}
+
+#player-form input[type="radio"]:disabled:checked {
+    background: gray;
+}
+
 #gameboard {
     aspect-ratio: 1;
-    display: grid;
+    display: none;
     gap: 1rem;
     grid-template-columns: 1fr 1fr 1fr;
     width: min(25rem, 60%);

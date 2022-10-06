@@ -4,14 +4,11 @@ const Gameboard = (function() {
         return gameboard
     }
 
-    const createPlayer = function(name, mark) {
-        playerFactory(name, mark);
-    }
-
     return {getGameBoard}
 })();
 
 const formController = (function() {
+    const form = document.getElementById('player-form');
     const playerOneRadios = document.querySelectorAll('input[name="player-one-mark"]');
     const playerTwoRadios = document.querySelectorAll('input[name="player-two-mark"]');
     const getPlayerOneMark = function() {
@@ -39,24 +36,56 @@ const formController = (function() {
     for (const radio of playerOneRadios) {
         radio.addEventListener('change', update);
     }
+
+    form.onsubmit = function(e) {
+        e.preventDefault();
+        for (const radio of playerOneRadios) {
+            radio.removeEventListener('change', update);
+        }
+        const playerOnePick = (document.querySelector('input[name="player-one-mark"]:checked')).value;
+        const playerTwoPick = (document.querySelector('input[name="player-two-mark"]:checked')).value;
+        const playerOneName = (document.querySelector('#player-one-name')).value;
+        const playerTwoName = (document.querySelector('#player-two-name')).value;
+        gameController.createPlayer(playerOneName, playerOnePick);
+        gameController.createPlayer(playerTwoName, playerTwoPick);
+        
+        displayController.proceedToGame(gameController.getPlayers());
+    }
 })();
 
 const displayController = (function() {
-    const gameboard = document.getElementById('gameboard');
     const form = document.getElementById('player-form');
+    const content = document.getElementById('content');
+    const gameboard = document.getElementById('gameboard');
     const render = function() {
         gameboard.textContent = Gameboard.getGameBoard();
     }
-    return {render}
+    const proceedToGame = function(players) {
+        if(!players.length == 2) return;
+        form.style.display = 'none';
+        content.style.display = 'flex';
+        gameboard.style.display = 'grid';
+    }
+    return {render, proceedToGame}
 })();
 
 function playerFactory(name, mark) {
     this.name = name;
     this.mark = mark;
+
+    return {name, mark}
 }
 
-// const gameController = (function() {
-//     formController.playerOneRadio.addEventListener('change', displayController.changePlayerTwoMark(e));
-// })();
+const gameController = (function() {
+    const players = [];
+    const createPlayer = function(name, mark) {
+        const playerObj = playerFactory(name, mark);
+        players.push(playerObj);
+    }
+    const getPlayers = function() {
+        return players;
+    }
+    return {createPlayer, getPlayers}
+})();
 
 // displayController.render();

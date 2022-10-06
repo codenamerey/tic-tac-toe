@@ -9,6 +9,30 @@
     <title>Tic Tac Toe!</title>
 </head>
 <body>
+    <aside>
+        <form id="player-form">
+            <label for="player-name">Enter player 1 name:</label>
+            <input type="text" id="player-one-name">
+            
+            <h2>Please select your symbol:</h2>
+            <span>
+                <label for="x-mark">X</label>
+                <input type="radio" name="player-one-mark" id="x-mark" value="X" checked>
+                <label for="o-mark">O</label>
+                <input type="radio" name="player-one-mark" id="o-mark" value="O">
+            </span>
+
+            <label for="player-name">Enter player 2 name:</label>
+            <input type="text" id="player-two-name">
+
+            <span>
+                <label for="x-mark">X</label>
+                <input type="radio" name="player-two-mark" id="x-mark" value="X" disabled>
+                <label for="o-mark">O</label>
+                <input type="radio" name="player-two-mark" id="o-mark" value="O" disabled>
+            </span>
+        </form>
+    </aside>
     <main id="gameboard">
         <div id="grid"></div>
         <div id="grid"></div>

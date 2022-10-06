@@ -1,0 +1,23 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+#gameboard {
+    aspect-ratio: 1;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: min(25rem, 60%);
+}
+
+#gameboard > #grid {
+    aspect-ratio: 1;
+    background: gray;
+}

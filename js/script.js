@@ -137,8 +137,8 @@ const gameController = (function() {
     const gameboard = Gameboard.getGameBoard();
 
     const checkForWinner = function() {
-        return checkForDiagonals();
-        // checkForRows();
+        return checkForDiagonals() ||
+        checkForRows();
         // checkForColumns();
     }
 
@@ -153,9 +153,17 @@ const gameController = (function() {
         });
     }
 
-    // const checkForRows = function() {
-    //     const row1 = [0, 1, 2];
-    //     const row2
-    // }
+    const checkForRows = function() {
+        const row1 = [gameboard[0], gameboard[1], gameboard[2]];
+        const row2 = [gameboard[3], gameboard[4], gameboard[5]];
+        const row3 = [gameboard[6], gameboard[7], gameboard[8]];
+        return row1.every((grid) => {
+            return (grid === row1[0] && grid != null);
+        }) || row2.every((grid) => {
+            return (grid === row2[0] && grid != null);
+        }) || row3.every((grid) => {
+            return (grid === row3[0] && grid != null);
+        });
+    }
     return {checkForWinner}
 })();

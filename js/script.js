@@ -145,16 +145,17 @@ const gameController = (function() {
     const checkForDiagonals = function() {
         const diagonal1 = [gameboard[0], gameboard[4], gameboard[8]];
         const diagonal2 = [gameboard[2], gameboard[4], gameboard[6]];
-        //check if diagonals all have the same value
+        //check if either diagonals all have the same value
         return diagonal1.every((grid) => {
-            return grid == 'X';
+            return (grid === diagonal1[0] && grid != null);
         }) || diagonal2.every((grid) => {
-            return grid == 'O';
-        }) || diagonal1.every((grid) => {
-            return grid == 'O';
-        }) || diagonal2.every((grid) => {
-            return grid == 'X';
+            return (grid === diagonal2[0] && grid != null);
         });
     }
+
+    // const checkForRows = function() {
+    //     const row1 = [0, 1, 2];
+    //     const row2
+    // }
     return {checkForWinner}
 })();

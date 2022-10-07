@@ -124,3 +124,15 @@ button {
     aspect-ratio: 1;
     background: gray;
 }
+
+#winner {
+    font-weight: bold;
+}
+
+#winner-display {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: inset 2px 2px 5px rgb(92, 87, 87);
+    padding: 1rem;
+    position: absolute;
+}

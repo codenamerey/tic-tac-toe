@@ -20,8 +20,27 @@ const Gameboard = (function() {
         return currentPlayer;
     }
 
+    const toggleCurrentPlayer = function() {
+        if((getCurrentPlayer()).mark == 'X') {
+            players.forEach((player) => {
+                if (player.mark == 'O') {
+                    currentPlayer = player;
+                }
+            });
+        }
+
+        else {
+            players.forEach((player) => {
+                if(player.mark == 'X') {
+                    currentPlayer = player;
+                }
+            });
+        }
+    }
+
     const placeMarker = function() {
         this.textContent = (getCurrentPlayer()).mark;
+        toggleCurrentPlayer();
         // if (gameboard[index]) return;
         // gameboard[index] = mark;
     }

@@ -43,8 +43,8 @@ const Gameboard = (function() {
         if (gameboard[index]) return;
         this.textContent = (getCurrentPlayer()).mark;
         gameboard[index] = this.textContent;
+        if(gameController.checkForWinner()) displayController.displayWinnerScreen();
         toggleCurrentPlayer();
-        console.log(gameController.checkForWinner());
     }
     return {createPlayer, getPlayers, placeMarker, getGameBoard, getCurrentPlayer}
 })();
@@ -123,7 +123,18 @@ const displayController = (function() {
             playersDisplay.innerHTML += `<div id="player">Player ${index + 1} Name: ${player.name}, Marker: ${player.mark}`;
         });
     }
-    return {proceedToGame}
+
+    const displayWinnerScreen = function() {
+        //if there is no winner, ignore
+        if(!gameController.checkForWinner()) return;
+        const winner = Gameboard.getCurrentPlayer();
+        const winnerDisplay = document.createElement('aside');
+        const message = `<p><span id="winner">${winner.name}</span> won!</p>`;
+        winnerDisplay.id = 'winner-display';
+        winnerDisplay.innerHTML = message;
+        document.body.appendChild(winnerDisplay);
+    }
+    return {proceedToGame, displayWinnerScreen}
 })();
 
 function playerFactory(name, mark) {

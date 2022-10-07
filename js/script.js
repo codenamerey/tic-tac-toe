@@ -39,10 +39,12 @@ const Gameboard = (function() {
     }
 
     const placeMarker = function() {
+        const index = this.getAttribute('data-board-code');
+        if (gameboard[index]) return;
         this.textContent = (getCurrentPlayer()).mark;
+        gameboard[index] = this.textContent;
         toggleCurrentPlayer();
-        // if (gameboard[index]) return;
-        // gameboard[index] = mark;
+        console.log(gameController.checkForWinner());
     }
     return {createPlayer, getPlayers, placeMarker, getGameBoard, getCurrentPlayer}
 })();
@@ -131,6 +133,28 @@ function playerFactory(name, mark) {
     return {name, mark}
 }
 
-// const gameController = (function() {
-//     return {createPlayer, getPlayers}
-// })();
+const gameController = (function() {
+    const gameboard = Gameboard.getGameBoard();
+
+    const checkForWinner = function() {
+        return checkForDiagonals();
+        // checkForRows();
+        // checkForColumns();
+    }
+
+    const checkForDiagonals = function() {
+        const diagonal1 = [gameboard[0], gameboard[4], gameboard[8]];
+        const diagonal2 = [gameboard[2], gameboard[4], gameboard[6]];
+        //check if diagonals all have the same value
+        return diagonal1.every((grid) => {
+            return grid == 'X';
+        }) || diagonal2.every((grid) => {
+            return grid == 'O';
+        }) || diagonal1.every((grid) => {
+            return grid == 'O';
+        }) || diagonal2.every((grid) => {
+            return grid == 'X';
+        });
+    }
+    return {checkForWinner}
+})();

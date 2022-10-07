@@ -101,6 +101,10 @@ const displayController = (function() {
     const gameboard = document.getElementById('gameboard');
     const playersDisplay = document.getElementById('players');
 
+    const _refreshWindow = function() {
+        document.location.reload();
+    }
+
     const displayGameboard = function() {
         const gameboardArray = Gameboard.getGameBoard();
         gameboardArray.forEach((mark, index) => {
@@ -129,9 +133,13 @@ const displayController = (function() {
         if(!gameController.checkForWinner()) return;
         const winner = Gameboard.getCurrentPlayer();
         const winnerDisplay = document.createElement('aside');
+        const restartButton = document.createElement('button');
         const message = `<p><span id="winner">${winner.name}</span> won!</p>`;
         winnerDisplay.id = 'winner-display';
         winnerDisplay.innerHTML = message;
+        restartButton.textContent = 'Restart Game';
+        restartButton.onclick = _refreshWindow;
+        winnerDisplay.appendChild(restartButton);
         document.body.appendChild(winnerDisplay);
     }
     return {proceedToGame, displayWinnerScreen}

@@ -129,6 +129,25 @@ button {
     font-weight: bold;
 }
 
+#cover {
+    animation-name: fade;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    position: absolute;
+    inset: 0;
+    background: white;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: .4;
+    }
+}
+
 #winner-display {
     animation-name: zoom-in;
     animation-duration: 500ms;
@@ -139,10 +158,3 @@ button {
     padding: 1rem;
     position: absolute;
 }
-
-/* #winner-display::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: black;
-} */

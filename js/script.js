@@ -134,12 +134,15 @@ const displayController = (function() {
         const winner = Gameboard.getCurrentPlayer();
         const winnerDisplay = document.createElement('aside');
         const restartButton = document.createElement('button');
+        const cover = document.createElement('div');
         const message = `<p><span id="winner">${winner.name}</span> won!</p>`;
         winnerDisplay.id = 'winner-display';
+        cover.id = 'cover';
         winnerDisplay.innerHTML = message;
         restartButton.textContent = 'Restart Game';
         restartButton.onclick = _refreshWindow;
         winnerDisplay.appendChild(restartButton);
+        document.body.appendChild(cover);
         document.body.appendChild(winnerDisplay);
     }
     return {proceedToGame, displayWinnerScreen}

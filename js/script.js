@@ -57,6 +57,7 @@ const displayController = (function() {
     const form = document.getElementById('player-form');
     const content = document.getElementById('content');
     const gameboard = document.getElementById('gameboard');
+    const playersDisplay = document.getElementById('players');
     const render = function() {
         gameboard.textContent = Gameboard.getGameBoard();
     }
@@ -65,6 +66,10 @@ const displayController = (function() {
         form.style.display = 'none';
         content.style.display = 'flex';
         gameboard.style.display = 'grid';
+        //display player names and markers
+        (gameController.getPlayers()).forEach((player, index) => {
+            playersDisplay.innerHTML += `<div id="player">Player ${index + 1} Name: ${player.name}, Marker: ${player.mark}`;
+        });
     }
     return {render, proceedToGame}
 })();

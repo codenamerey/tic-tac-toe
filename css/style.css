@@ -130,9 +130,19 @@ button {
 }
 
 #winner-display {
+    animation-name: zoom-in;
+    animation-duration: 500ms;
+    animation-timing-function: ease-in-out;
     background: white;
     border-radius: 1rem;
     box-shadow: inset 2px 2px 5px rgb(92, 87, 87);
     padding: 1rem;
     position: absolute;
 }
+
+/* #winner-display::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: black;
+} */

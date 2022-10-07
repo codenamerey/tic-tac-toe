@@ -138,8 +138,8 @@ const gameController = (function() {
 
     const checkForWinner = function() {
         return checkForDiagonals() ||
-        checkForRows();
-        // checkForColumns();
+        checkForRows() ||
+        checkForColumns();
     }
 
     const checkForDiagonals = function() {
@@ -165,5 +165,20 @@ const gameController = (function() {
             return (grid === row3[0] && grid != null);
         });
     }
+
+    const checkForColumns = function() {
+        const column1 = [gameboard[0], gameboard[3], gameboard[6]];
+        const column2 = [gameboard[1], gameboard[4], gameboard[7]];
+        const column3 = [gameboard[2], gameboard[5], gameboard[8]];
+
+        return column1.every((grid) => {
+            return (grid === column1[0] && grid != null);
+        }) || column2.every((grid) => {
+            return (grid === column2[0] && grid != null);
+        }) || column3.every((grid) => {
+            return (grid === column3[0] && grid != null);
+        });
+    }
+
     return {checkForWinner}
 })();

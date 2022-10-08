@@ -123,6 +123,12 @@ button {
 #gameboard > #grid {
     aspect-ratio: 1;
     background: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 200%;
+    font-weight: bold;
+    color: white;
 }
 
 #winner {
